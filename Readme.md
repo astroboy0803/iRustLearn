@@ -1,0 +1,48 @@
+### Memo
+- rustup -> 負責安裝及管理Rust的工具 
+- rustc -> 編譯rust程式
+- cargo -> 建構系統與套件管理工具
+    - new: 建立專案, 包含
+        - Cargo.toml: 
+            - [Package]: 專案的資訊, 像是名稱, 版本, 作者等...
+            - [dependencies]: 列出專案相依套件
+        - src目錄: 裡面自動產生main.rs(entry point)
+        - git repository: 未在任何repo時才會產生, 包含.gitignore
+    - build: 編譯專案
+        - target目錄: 存放編譯結果
+        - Cargo.lock檔案: 追蹤依賴函式庫的確切版本
+        - --release: 
+            - 最佳化編譯, 讓程式在runtime時執行更快, 但編譯時間會變長
+            - 產生的執行檔會在release目錄, 而非debug
+    - run: 建構(build的作業)加執行
+    - check: 檢查程式碼是否可以完成編譯, 但不會像build一樣產生執行檔
+    - update: 忽略Cargo.lock內容, 直接從Cargo.toml中取得dependency最新版本, 成功後會將取得資訊覆寫回Cargo.lock中
+    - doc: 下載引用套件的文件檔, 以了解如何使用相關套件
+- 檔名命名規則 -> rs為副檔名, 檔名超過一個單字用_區隔(hello_world.rs)
+- println() -> 函式(function)
+- println!() -> 巨集(macro)
+- prelude -> 預設情況下, Rust會將部份標準函式庫定義的型別import到每隻程式中, 這樣的集合就稱之
+    - 若想使用標準函式庫的內容但卻不在prelude中, 須透過關鍵字**use**顯式的引入
+    - 不透過use引入也可以在程式中使用, 但就要完整寫出使用的函式庫
+- 宣告
+    - 常數(不可變動): let consName
+    - 變數(可更改內容): let mut varName
+- &: call by reference
+    - 預設不可變, 只能讀
+    - 想修改內容必須加上**mut**
+- Result<T, E>: 為generic(泛型) enumeration, 表成功或失敗兩種狀況
+    - Ok(T)
+    - Err(E)
+    - expect(self, msg: &str) -> T
+        - 解析Result內容
+            - Ok: 直接回傳
+            - Err: 拋錯, 錯誤訊息為msg
+- println中的 **{}**
+    - 佔位符號, 將變數轉換為字串, 可多個, 會依據println的參數依序讀取
+- 標準函式庫沒有產生隨機數字的功能
+    - Rust團隊有提供rand crate
+- crate: Rust原始碼集合
+- Range用法
+    - start..end: 包含下限(start)但不會包含上限(end)
+    - start..=end: 包含下限(start)與上限(end)
+- shadow: 可重複使用變數名稱
